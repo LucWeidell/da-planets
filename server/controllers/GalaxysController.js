@@ -12,7 +12,7 @@ export class GalaxysController extends BaseController {
       .delete('/:id', this.remove)
   }
 
-    /**
+  /**
    * Sends found values to a client by request
    * @param {import("express").Request} req
    * @param {import("express").Response} res
@@ -27,7 +27,7 @@ export class GalaxysController extends BaseController {
     }
   }
 
-    /**
+  /**
    * Sends found values to a client by request
    * @param {import("express").Request} req
    * @param {import("express").Response} res
@@ -42,7 +42,7 @@ export class GalaxysController extends BaseController {
     }
   }
 
-    /**
+  /**
    * Sends found values to a client by request
    * @param {import("express").Request} req
    * @param {import("express").Response} res
@@ -57,7 +57,7 @@ export class GalaxysController extends BaseController {
     }
   }
 
-    /**
+  /**
    * Sends found values to a client by request
    * @param {import("express").Request} req
    * @param {import("express").Response} res
@@ -66,7 +66,7 @@ export class GalaxysController extends BaseController {
   async edit(req, res, next) {
     try {
       req.body.id = req.params.id
-      const galaxy = await galaxyService.edit(res.body)
+      const galaxy = await galaxyService.edit(req.body)
       res.send(galaxy)
     } catch (error) {
       next(error)
@@ -82,8 +82,9 @@ export class GalaxysController extends BaseController {
   async remove(req, res, next) {
     try {
       const galaxy = await galaxyService.remove(req.params.id)
-      res.send({message: 'deleted galaxy Success'})
+      res.send({ message: 'deleted galaxy Success' })
     } catch (error) {
       next(error)
     }
   }
+}
