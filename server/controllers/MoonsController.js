@@ -1,10 +1,10 @@
 import BaseController from '../utils/BaseController'
 import { logger } from '../utils/Logger'
-import { planetsService } from '../services/PlanetsService'
+import { moonsService } from '../services/MoonsService'
 
-export class PlanetsController extends BaseController {
+export class MoonsController extends BaseController {
   constructor() {
-    super('api/planets')
+    super('api/moons')
     this.router
       .get('', this.getAll)
       .get('/:id', this.getById)
@@ -14,30 +14,30 @@ export class PlanetsController extends BaseController {
   }
 
   /**
-       * Sends all planets to a client by request
+       * Sends all moons to a client by request
        * @param {import('express').Request} req
        * @param {import('express').Response} res
        * @param {import('express').NextFunction} next
        */
   async getAll(req, res, next) {
     try {
-      const planet = await planetsService.getAll(req.query)
-      res.send(planet)
+      const moon = await moonsService.getAll(req.query)
+      res.send(moon)
     } catch (error) {
       next(error)
     }
   }
 
   /**
-       * Sends all planet with Id to a client by request
+       * Sends all moon with Id to a client by request
        * @param {import('express').Request} req
        * @param {import('express').Response} res
        * @param {import('express').NextFunction} next
        */
   async getById(req, res, next) {
     try {
-      const planet = await planetsService.getById(req.params.id)
-      res.send(planet)
+      const moon = await moonsService.getById(req.params.id)
+      res.send(moon)
     } catch (error) {
       next(error)
     }
@@ -51,8 +51,8 @@ export class PlanetsController extends BaseController {
        */
   async create(req, res, next) {
     try {
-      const planet = await planetsService.create(req.body)
-      res.send(planet)
+      const moon = await moonsService.create(req.body)
+      res.send(moon)
     } catch (error) {
       next(error)
     }
@@ -68,8 +68,8 @@ export class PlanetsController extends BaseController {
     try {
       req.body.id = req.params.id
       delete req.body.price
-      const planet = await planetsService.edit(req.body)
-      res.send(planet)
+      const moon = await moonsService.edit(req.body)
+      res.send(moon)
     } catch (error) {
       next(error)
     }
@@ -83,8 +83,8 @@ export class PlanetsController extends BaseController {
        */
   async delete(req, res, next) {
     try {
-      await planetsService.delete(req.params.id)
-      res.send({ message: 'Successfully Deleted planet' })
+      await moonsService.delete(req.params.id)
+      res.send({ message: 'Successfully Deleted moon' })
     } catch (error) {
       next(error)
     }

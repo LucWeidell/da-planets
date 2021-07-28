@@ -7,5 +7,6 @@ const Star = new Schema(
     gal_id: { type: String, required: true }
   }, { timestamps: true, toJSON: { virtuals: true } }
 )
+// Need virtual for StarPlanets Here
 
 export default Star
